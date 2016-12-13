@@ -1,6 +1,6 @@
 {
     "name": "kaba-shelf-less",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "A less shelf implementation. Integrates with kaba.",
     "repository": {
         "type": "git",
