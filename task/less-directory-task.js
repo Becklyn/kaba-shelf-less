@@ -9,6 +9,11 @@ const path = require("path");
 const Promise = require("bluebird");
 
 
+/**
+ * LESS task handler that handles compilation of all files in a given directory
+ *
+ * @type {LessDirectoryTask}
+ */
 module.exports = class LessDirectoryTask
 {
     /**
