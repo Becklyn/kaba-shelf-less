@@ -44,7 +44,6 @@ All configuration options:
 | `input`         | `string`                   | A glob that matches all directories that contain LESS files                                                  | `"src/**/Resources/assets/less/"` | As this parameter is passed unaltered to [glob] it will accept everything that glob accepts.          |
 | `output`        | `string`                   | The output dir for compiled files                                                                            | `"../../public/css"`              | This path is relative to the (resolved) `input` path for the given file.                              |
 | `browsers`      | `array`                    | The list of supported browers                                                                                | `["last 2 versions", "IE 10"]`    | This value is passed to [autoprefixer], so please look in their documentation for all allowed values. |
-| `ignoreLintFor` | `array.<(RegExp\|string)>` | If the one of these strings occur (or the regex matches) the current file path, the file will not be linted. | `["/node_modules/", "/vendor/"]`  |                                                                                                       |
 
 
 

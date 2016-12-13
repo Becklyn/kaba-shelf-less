@@ -4,7 +4,6 @@
  *      inputFiles: string,
  *      output: string,
  *      browsers: string[],
- *      ignoreLintFor: Array.<(string|RegExp)>,
  * }} LessTaskConfig
  */
 
@@ -20,8 +19,6 @@ module.exports = function (config = {})
         output: "../../public/css",
         // browsers to support
         browsers: ["last 2 versions", "IE 10"],
-        // list of file path paths (string or regex). If the file path matches one of these entries, the file won't be linted
-        ignoreLintFor: ["/node_modules/", "/vendor/"]
     });
 
     // build internal config
