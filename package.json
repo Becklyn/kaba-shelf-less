@@ -1,0 +1,21 @@
+{
+    "name": "kaba-less",
+    "version": "0.1",
+    "description": "A less shelf implementation. Integrates with kaba.",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Becklyn/kaba-less.git"
+    },
+    "homepage": "https://github.com/Becklyn/kaba-less",
+    "license": "BSD-3-Clause",
+    "main": "main.js",
+    "dependencies": {
+        "bluebird": "^3.4.6",
+        "chalk": "^1.1.3",
+        "chokidar": "^1.6.1",
+        "csso": "^2.3.0",
+        "glob": "^7.1.1",
+        "less": "^2.7.1",
+        "lodash": "^4.17.2"
+    }
+}
