@@ -3,6 +3,7 @@ const csso = require("csso");
 const fs = require("fs");
 const glob = require("glob");
 const less = require("less");
+const LessPluginAutoPrefixer = require("less-plugin-autoprefix");
 const Logger = require("../lib/logger");
 const path = require("path");
 const Promise = require("bluebird");
@@ -140,6 +141,11 @@ module.exports = class LessDirectoryTask
         const lessOptions = {
             paths: [path.dirname(file)],
             filename: path.basename(file),
+            plugins: [
+                new LessPluginAutoPrefixer({
+                    browsers: this.config.browsers,
+                }),
+            ],
         };
 
         if (debug)
