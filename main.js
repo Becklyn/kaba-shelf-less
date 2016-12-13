@@ -1,7 +1,6 @@
 /**
  * @typedef {{
  *      input: string,
- *      inputFiles: string,
  *      output: string,
  *      browsers: string[],
  * }} LessTaskConfig
