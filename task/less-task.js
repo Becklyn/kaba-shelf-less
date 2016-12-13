@@ -6,7 +6,11 @@ const LessDirectoryTask = require("./less-directory-task");
 const Logger = require("../lib/logger");
 const Promise = require("bluebird");
 
-
+/**
+ * The main LESS task handler
+ *
+ * @type {LessTask}
+ */
 module.exports = class LessTask
 {
     /**
@@ -17,7 +21,7 @@ module.exports = class LessTask
     {
         /**
          * @private
-         * @type {ScssTaskConfig}
+         * @type {LessTaskConfig}
          */
         this.config = config;
 
