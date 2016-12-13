@@ -1,12 +1,12 @@
 {
-    "name": "kaba-less",
+    "name": "kaba-shelf-less",
     "version": "0.1",
     "description": "A less shelf implementation. Integrates with kaba.",
     "repository": {
         "type": "git",
-        "url": "https://github.com/Becklyn/kaba-less.git"
+        "url": "https://github.com/Becklyn/kaba-shelf-less.git"
     },
-    "homepage": "https://github.com/Becklyn/kaba-less",
+    "homepage": "https://github.com/Becklyn/kaba-shelf-less",
     "license": "BSD-3-Clause",
     "main": "main.js",
     "dependencies": {
