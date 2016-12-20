@@ -1,6 +1,6 @@
 const chalk = require("chalk");
 const csso = require("csso");
-const fs = require("fs");
+const fs = require("fs-extra");
 const glob = require("glob");
 const less = require("less");
 const LessPluginAutoPrefixer = require("less-plugin-autoprefix");
@@ -205,6 +205,8 @@ module.exports = class LessDirectoryTask
         const outFile = this.generateOutputFileName(file);
 
         this.logger.log(`Compile ${chalk.yellow(path.basename(file))} -> ${chalk.yellow(path.basename(outFile))}`);
+
+        fs.mkdirsSync(path.dirname(outFile));
 
         return new Promise(
             (resolve, reject) => {
