@@ -67,8 +67,12 @@ module.exports = class LessDirectoryTask
                                     .then((css) => this.minify(css));
                             }
 
-                            return pipe
-                                .then((data) => this.writeFile(file, data));
+                            pipe = pipe
+                                .then((data) => this.writeFile(file, data))
+                                .catch((e) => this.logger.logError(`Compilation of file ${chalk.yellow(path.relative(this.directory, file))} failed.`));
+
+
+                            return pipe;
                         }
                     );
 
@@ -169,6 +173,15 @@ module.exports = class LessDirectoryTask
                             resolve(output.css);
                         },
                         (error) => {
+                            this.logger.logBuildError({
+                                reason: {
+                                    file: error.filename,
+                                    line: error.line,
+                                    formatted: error.extract.join("\n"),
+                                    column: error.column,
+                                    message: error.message,
+                                },
+                            });
                             reject(error);
                         }
                     );
