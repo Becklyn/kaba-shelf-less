@@ -44,18 +44,17 @@ module.exports = class LessTask
      * Runs the task
      *
      * @param {function} done
-     * @param {boolean} debug Flag, whether the task should run in debug mode
      */
-    run (done, debug)
+    run (done)
     {
         this.buildTaskList()
             .then(
                 /** @param {LessDirectoryTask[]} directoryTasks */
                 (directoryTasks) =>
                 {
-                    const compileResult = this.runAllTasks(directoryTasks, debug);
+                    const compileResult = this.runAllTasks(directoryTasks);
 
-                    if (debug)
+                    if (this.config.watch)
                     {
                         const watcher = this.watch(directoryTasks);
 
@@ -91,8 +90,8 @@ module.exports = class LessTask
         return chokidar.watch(`${this.config.input}**/*.less`, {
             ignoreInitial: true,
         })
-            .on("add", () => this.runAllTasks(directoryTasks, true))
-            .on("change", () => this.runAllTasks(directoryTasks, true));
+            .on("add", () => this.runAllTasks(directoryTasks))
+            .on("change", () => this.runAllTasks(directoryTasks));
     }
 
 
@@ -102,13 +101,12 @@ module.exports = class LessTask
      *
      * @private
      * @param {LessDirectoryTask[]} tasks
-     * @param {boolean} debug
      * @returns {Promise}
      */
-    runAllTasks (tasks, debug)
+    runAllTasks (tasks)
     {
         return Promise.all(
-            tasks.map(task => task.compile(debug))
+            tasks.map(task => task.compile())
         );
     }
 

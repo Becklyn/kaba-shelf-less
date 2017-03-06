@@ -47,10 +47,9 @@ module.exports = class LessDirectoryTask
     /**
      * Compiles the file
      *
-     * @param {bool} debug
      * @return {Promise}
      */
-    compile (debug)
+    compile ()
     {
         return this.findAllFiles()
             .then(
@@ -59,9 +58,9 @@ module.exports = class LessDirectoryTask
                         (file) =>
                         {
                             let pipe = this.readFile(file)
-                                .then((data) => this.compileFile(file, data, debug));
+                                .then((data) => this.compileFile(file, data));
 
-                            if (!debug)
+                            if (!this.config.debug)
                             {
                                 pipe = pipe
                                     .then((css) => this.minify(css));
@@ -143,9 +142,8 @@ module.exports = class LessDirectoryTask
      * @private
      * @param {string} file
      * @param {string} fileContent
-     * @param {bool} debug
      */
-    compileFile (file, fileContent, debug)
+    compileFile (file, fileContent)
     {
         const lessOptions = {
             paths: [path.dirname(file)],
@@ -157,7 +155,7 @@ module.exports = class LessDirectoryTask
             ],
         };
 
-        if (debug)
+        if (this.config.debug)
         {
             lessOptions.sourceMap = {
                 sourceMapFileInline: true,
@@ -248,6 +246,8 @@ module.exports = class LessDirectoryTask
     generateOutputFileName (file)
     {
         let relativeSrcPath = path.relative(this.directory, file);
+        let outputFileName = path.basename(file, ".less") + ".css";
+        outputFileName = this.config.outputFileName(outputFileName, path.basename(file));
 
         // join output dir + relative src dir + file name (with extension switched to css)
         return path.join(
@@ -256,7 +256,7 @@ module.exports = class LessDirectoryTask
                 this.config.output
             ),
             path.dirname(relativeSrcPath),
-            path.basename(file, ".less") + ".css"
+            outputFileName
         );
     }
 };
