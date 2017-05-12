@@ -6,6 +6,8 @@
  *      outputFileName: function(string, string):string,
  *      debug: boolean,
  *      watch: boolean,
+ *      verbose: boolean,
+ *      lint: boolean,
  * }} LessTaskConfig
  */
 
@@ -25,10 +27,6 @@ module.exports = function (config = {})
         browsers: ["last 2 versions", "IE 10"],
         // Transforms the file name before writing the out file
         outputFileName: (outputFileName, inputFileName) => outputFileName,
-        // Whether to build for debug
-        debug: null,
-        // Whether to start the watcher
-        watch: null,
     });
 
     // build internal config
@@ -39,6 +37,17 @@ module.exports = function (config = {})
         config = _.assign({}, defaultEnvironment, env, config);
 
         let task = new LessTask(config);
-        task.run(done);
+
+        switch (config.mode)
+        {
+            case "compile":
+                task.run(done);
+                break;
+
+            default:
+                console.log(`Unsupported mode: ${config.mode}`);
+                done();
+                break;
+        }
     };
 };
