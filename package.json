@@ -1,6 +1,6 @@
 {
     "name": "kaba-shelf-less",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "description": "A less shelf implementation. Integrates with kaba.",
     "repository": {
         "type": "git",
@@ -10,6 +10,7 @@
     "license": "BSD-3-Clause",
     "main": "main.js",
     "dependencies": {
+        "kaba": "^2.0.0-beta.2",
         "bluebird": "^3.4.6",
         "chalk": "^1.1.3",
         "chokidar": "^1.6.1",

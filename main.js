@@ -11,6 +11,8 @@
 
 const _ = require("lodash");
 const LessTask = require("./task/less-task");
+const defaultEnvironment = require("kaba/kaba/shelf/app-environment");
+
 
 module.exports = function (config = {})
 {
@@ -32,17 +34,9 @@ module.exports = function (config = {})
     // build internal config
     config.input = config.input.replace(/\/+$/, "") + "/";
 
-    return function (done, debug)
+    return function (done, env)
     {
-        if (null === config.debug)
-        {
-            config.debug = debug;
-        }
-
-        if (null === config.watch)
-        {
-            config.watch = debug;
-        }
+        config = _.assign({}, defaultEnvironment, env, config);
 
         let task = new LessTask(config);
         task.run(done);
